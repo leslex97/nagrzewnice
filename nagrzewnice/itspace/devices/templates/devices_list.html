@@ -1,0 +1,41 @@
+{% extends 'base.html' %} 
+{% block header %}
+ Lista urządzeń 
+ {% endblock header%} 
+ {% block content %}
+
+ 
+ <form name="search_form" method="post" class="form-inline">
+	{% csrf_token %}
+	<div class='form-space p-3 m-3 bg-white'>{{ form }}
+	<button type="submit"
+	class="btn btn-danger btn ">
+	<i class="fas fa-search"></i>
+	Szukaj
+</button>
+</div>
+</form>
+
+<div>
+	<table class='col-12 table'>
+		<tr>
+			<th ><h4>Sprzęt</h4></th>
+			<th><h4>Rodzaj</h4></th>
+			<th><h4>IP</h4></th>
+			<th><h4>Przełącznik</h4></th>
+		</tr>
+	{% for device in devices %}
+	<tr class="m-5">
+		<td>
+			<a class='text-decoration-none text-danger' href="{% url 'device_details' device.id %}">
+				<h5>{{ device.name}}</h5>
+			</a>
+		</td>
+		<td><p>{{ device.type}}</p></td>
+		<td><p>IP: {{ device.iP}}</p></td>
+		<td><p>IP: {{ device.switch}}</p></td>
+	</tr>
+	{% endfor %}	
+</div>
+</table>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block header %}
+ {{ device.name }} - Informacje
+{% endblock header %}
+
+{% block content %}
+	
+
+	
+<div class=' content-container d-grid'>
+	<div class='content text-center bg-white pb-3 pt-3 mt-5'>
+
+		<h3 >Nazwa wewnętrzna: {{ device.name}}</h3>
+		<p>Typ urządzenia: {{device.type}}</p>
+		<a href="http://{{device.iP}}" target='_blank' class='text-danger  text-decoration-none '>Adres IP: {{ device.iP }}</a>
+		<p class='pt-2 mt-1'>Adres MAC: {{ device.mac_address }}</p>
+		<p>Miejsce użytkowania: {{ device.place }}</p>
+		{% if device.switch %}
+			<p>Podpięty do: {{ device.switch }}</p>
+		{% endif %} 
+		{% if device.switch %}
+			<p>Port na Switchu: {{ device.switch_port }}</p>
+		{% endif %}
+		<p>Opis: {{ device.description }}</p>
+		<p>Opis: {{ device.edit_date }}</p>
+	</div>
+	<button class='btn btn-danger mt-5 '>
+		<a class='text-light text-decoration-none h4 p-3' href="{%url "devices_list" %}">Powrót</a>
+	</button>
+</div>
+
+{% endblock content %}
